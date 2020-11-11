@@ -1,8 +1,11 @@
 #THIS IS A WEBSERVER FOR DEMONSTRATING THE TYPES OF RESPONSES WE SEE FROM AN API ENDPOINT
-from flask import Flask
+from flask import Flask, render_template, request, redirect, jsonify, url_for, flash
 app = Flask(__name__)
 
 #GET REQUEST
+
+
+
 
 @app.route('/api/<string:food_name>')
 def noAppId(food_name):
@@ -37,6 +40,10 @@ def getRequestHello(food_name, appid):
         return answer
     except ValueError:
         server_response = {'cod':401, 'message':'Food not Found In Our Cute API try Mango'}
+        return server_response
+    except TypeError:
+        server_response = {'cod':401, 'message':'Food not Found In Our Cute API or not exit'}
+        return server_response
 
 
 
